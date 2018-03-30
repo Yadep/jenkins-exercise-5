@@ -1,0 +1,17 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Build') { 
+            steps { 
+                node {
+					  withCredentials([string(credentialsId: ID_USER, variable: 'USER'),string(credentialsId: ID_PASSWORD, variable: 'PASS')]){
+					bat '''
+						  echo utilisateur : %USER% password : %PASS%
+						'''
+					  }
+					}
+            }
+        }
+    }
+}
